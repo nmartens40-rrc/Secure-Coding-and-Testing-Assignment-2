@@ -1,26 +1,34 @@
-name: Lint Code Base
+---
+name: Lint
 
-on:
-    pull_request:
-    push:
+on: # yamllint disable-line rule:truthy
+    push: null
+    pull_request: null
+
+permissions: {}
 
 jobs:
-    lint:
-        name: Lint Code Base
+    build:
+        name: Lint
         runs-on: ubuntu-latest
 
         permissions:
             contents: read
-            statuses: write
             packages: read
+            # To report GitHub Actions status checks
+            statuses: write
 
         steps:
-            - name: Checkout Code
+            - name: Checkout code
               uses: actions/checkout@v5
               with:
-                  fetch-depth: 0 # Required for Super-Linter correctness
+                  # super-linter needs the full git history to get the
+                  # list of files that changed across commits
+                  fetch-depth: 0
+                  persist-credentials: false
 
-            - name: Lint Code Base
-              uses: super-linter/super-linter@v8.2.1
+            - name: Super-linter
+              uses: super-linter/super-linter@v8.2.1 # x-release-please-version
               env:
+                  # To report GitHub Actions status checks
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
