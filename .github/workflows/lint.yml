@@ -32,9 +32,3 @@ jobs:
               env:
                   # To report GitHub Actions status checks
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-            - name: Install Bandit
-              run: pip install bandit
-
-            - name: Run Bandit Scan
-              run: bandit -r . -lll || true
