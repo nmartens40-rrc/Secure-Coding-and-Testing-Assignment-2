@@ -2,8 +2,8 @@
 name: Lint
 
 on: # yamllint disable-line rule:truthy
-    push: null
-    pull_request: null
+    push:
+    pull_request:
 
 permissions: {}
 
@@ -32,10 +32,3 @@ jobs:
               env:
                   # To report GitHub Actions status checks
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            - name: Bandit Scan
-              uses: shundor/bandit-action@v1
-              with:
-                  path: "."
-                  level: high
-                  confidence: high
-                  exit_zero: true
