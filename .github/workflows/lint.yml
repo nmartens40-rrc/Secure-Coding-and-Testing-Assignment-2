@@ -33,10 +33,8 @@ jobs:
                   # To report GitHub Actions status checks
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-            - name: Bandit Scan
-              uses: py-actions/bandit@v1.0.0
-              with:
-                  path: "."
-                  level: high
-                  confidence: high
-                  exit_zero: true
+            - name: Install Bandit
+              run: pip install bandit
+
+            - name: Run Bandit Scan
+              run: bandit -r . -lll || true
