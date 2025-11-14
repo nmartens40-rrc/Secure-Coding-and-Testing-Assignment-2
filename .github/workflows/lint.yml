@@ -34,7 +34,7 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Bandit Scan
-              uses: shundor/bandit-action@v1
+              uses: bandit-analysis/bandit-action@v1
               with:
                   path: "."
                   level: high
