@@ -5,12 +5,16 @@ on: # yamllint disable-line rule:truthy
     push:
     pull_request:
 
-permissions: {}
-
 jobs:
     build:
         name: Lint
         runs-on: ubuntu-latest
+
+        permissions:
+            contents: read
+            packages: read
+            # To report GitHub Actions status checks
+            statuses: write
 
         steps:
             - name: Checkout code
